@@ -20,6 +20,14 @@ A comprehensive task management application built with Next.js and Supabase, fea
 - **Authentication**: Supabase Auth
 - **Drag and Drop**: dnd-kit library
 
+### Why This Stack?
+
+- **Next.js**: Chosen for its server-side rendering capabilities, improved SEO, and the App Router which simplifies routing and data fetching
+- **Supabase**: Provides a robust PostgreSQL database with built-in authentication, real-time subscriptions, and Row Level Security with minimal setup
+- **Tailwind CSS**: Enables rapid UI development with utility classes and excellent responsive design tools
+- **shadcn/ui**: Offers accessible, customizable components that integrate perfectly with Tailwind
+- **dnd-kit**: A lightweight, modular drag-and-drop toolkit with excellent accessibility features
+
 ## Getting Started
 
 ### Prerequisites
@@ -32,27 +40,27 @@ A comprehensive task management application built with Next.js and Supabase, fea
 
 Create a `.env.local` file in the root directory with the following variables:
 
-\`\`\`
+``` 
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 SUPABASE_PRIVATE_API_KEY=your_supabase_service_role_key
-\`\`\`
+```
 
 ### Installation
 
 1. Clone the repository
 2. Install dependencies:
-   \`\`\`bash
+   ```bash
    npm install
    # or
    yarn install
-   \`\`\`
+   ```
 3. Run the development server:
-   \`\`\`bash
+   ```bash
    npm run dev
    # or
    yarn dev
-   \`\`\`
+   ```
 4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ## Database Schema
