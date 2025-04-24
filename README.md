@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personal Task Management App
+
+A comprehensive task management application built with Next.js and Supabase, featuring drag-and-drop functionality, category management, and responsive design.
+
+## Features
+
+- User authentication with Supabase Auth
+- Task creation, editing, and deletion
+- Category assignment for tasks
+- Task prioritization via drag-and-drop
+- Filtering of tasks by status and category
+- Calendar view for due dates
+- Responsive design for mobile and desktop
+
+## Tech Stack
+
+- **Frontend**: Next.js 15 with App Router, React, Tailwind CSS, shadcn/ui
+- **Backend**: Next.js API Routes, Server Actions
+- **Database**: Supabase (PostgreSQL)
+- **Authentication**: Supabase Auth
+- **Drag and Drop**: dnd-kit library
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js 18.17 or later
+- npm or yarn
+- Supabase account
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a `.env.local` file in the root directory with the following variables:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+\`\`\`
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_PRIVATE_API_KEY=your_supabase_service_role_key
+\`\`\`
 
-## Learn More
+### Installation
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone the repository
+2. Install dependencies:
+   \`\`\`bash
+   npm install
+   # or
+   yarn install
+   \`\`\`
+3. Run the development server:
+   \`\`\`bash
+   npm run dev
+   # or
+   yarn dev
+   \`\`\`
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Database Schema
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The application uses the following database schema:
 
-## Deploy on Vercel
+### Users Table
+- Managed by Supabase Auth
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Categories Table
+- `id`: UUID (Primary Key)
+- `name`: Text
+- `color`: Text
+- `user_id`: UUID (Foreign Key to auth.users)
+- `created_at`: Timestamp
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Tasks Table
+- `id`: UUID (Primary Key)
+- `title`: Text
+- `description`: Text (Optional)
+- `is_completed`: Boolean
+- `due_date`: Timestamp (Optional)
+- `priority`: Integer
+- `category_id`: UUID (Foreign Key to categories)
+- `user_id`: UUID (Foreign Key to auth.users)
+- `created_at`: Timestamp
+
+## Implementation Decisions
+
+### Frontend Architecture
+- Used Server Components for initial data fetching
+- Used Client Components for interactive elements
+- Implemented responsive design with Tailwind CSS
+- Used shadcn/ui for consistent UI components
+
+### Backend Architecture
+- Leveraged Next.js App Router for routing
+- Used Supabase for authentication and data storage
+- Implemented Row Level Security for data protection
+- Created Server Actions for data mutations
+
+### State Management
+- Used React's built-in state management with useState and useEffect
+- Implemented optimistic updates for better UX
+- Used Supabase real-time subscriptions for live updates
+
+### Error Handling
+- Implemented proper error states in forms
+- Added loading indicators for async operations
+- Used try/catch blocks for error handling
+
+## License
+
+This project is licensed under the MIT License.
